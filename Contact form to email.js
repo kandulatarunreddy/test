@@ -1,19 +1,16 @@
 function emailSend(){
 
 	var userName = document.getElementById('name').value;
-	var phone = document.getElementById('phone').value;
 	var email = document.getElementById('email').value;
 
-	var messageBody = "Name " + userName +
-	"<br/> Phone " + phone +
-	"<br/> Email " + email;
+	var messageBody = document.getElementById('message').value;;
 	Email.send({
     Host : "smtp.elasticemail.com",
-    Username : "host@gmail.com",
-    Password : "Password",
-    To : 'reviever@gmail.com',
-    From : "website@gmail.com",
-    Subject : "This is the subject",
+    Username : "kandula.tarun99895@gmail.com",
+    Password : "53607CD51A190BC577A549FE53B66D817C59",
+    To : 'kandula.tarun99895@gmail.com',
+    From : email,
+    Subject : document.getElementById('subject').value;,
     Body : messageBody
 }).then(
   message => {
