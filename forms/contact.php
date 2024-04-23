@@ -1,52 +1,41 @@
-
 <?php
-$errors = [];
+  /**
+  * Requires the "PHP Email Form" library
+  * The "PHP Email Form" library is available only in the pro version of the template
+  * The library should be uploaded to: vendor/php-email-form/php-email-form.php
+  * For more info and help: https://bootstrapmade.com/php-email-form/
+  */
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get POST data
-    $name = isset($_POST['name']) ? strip_tags(trim($_POST['name'])) : '';
-    $email = isset($_POST['email']) ? trim($_POST['email']) : '';
-    $message = isset($_POST['message']) ? strip_tags(trim($_POST['message'])) : '';
+  // Replace contact@example.com with your real receiving email address
+  $receiving_email_address = 'kandula.tarun99895@gmail.com';
 
-    // Validate form fields
-    if (empty($name)) {
-        $errors[] = 'Name is empty';
-    }
+  if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
+    include( $php_email_form );
+  } else {
+    die( 'Unable to load the "PHP Email Form" Library!');
+  }
 
-    if (empty($email)) {
-        $errors[] = 'Email is empty';
-    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = 'Email is invalid';
-    }
+  $contact = new PHP_Email_Form;
+  $contact->ajax = true;
+  
+  $contact->to = $receiving_email_address;
+  $contact->from_name = $_POST['name'];
+  $contact->from_email = $_POST['email'];
+  $contact->subject = $_POST['subject'];
 
-    if (empty($message)) {
-        $errors[] = 'Message is empty';
-    }
+  // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
+ 
+  $contact->smtp = array(
+    'host' => "smtp.elasticemail.com", 
+    'username' => 'kandula.tarun99895@gmail.com',
+    'password' => '53607CD51A190BC577A549FE53B66D817C59',
+    'port' => '2525'
+  );
+ 
 
-    // If no errors, send email
-    if (empty($errors)) {
-        // Recipient email address (replace with your own)
-        $recipient = "kandula.tarun99895@gmail.com";
+  $contact->add_message( $_POST['name'], 'From');
+  $contact->add_message( $_POST['email'], 'Email');
+  $contact->add_message( $_POST['message'], 'Message', 10);
 
-        // Additional headers
-        $headers = "From: $name <$email>";
-
-        // Send email
-        if (mail($recipient, $message, $headers)) {
-            echo "Email sent successfully!";
-        } else {
-            echo "Failed to send email. Please try again later.";
-        }
-    } else {
-        // Display errors
-        echo "The form contains the following errors:<br>";
-        foreach ($errors as $error) {
-            echo "- $error<br>";
-        }
-    }
-} else {
-    // Not a POST request, display a 403 forbidden error
-    header("HTTP/1.1 403 Forbidden");
-    echo "You are not allowed to access this page.";
-}
+  echo $contact->send();
 ?>
