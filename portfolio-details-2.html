@@ -111,22 +111,41 @@
         </div>
       </div>
 
-      <div class="col-lg-8 offset-lg-2">
-        <div class="portfolio-description">
-          <h2>Meme matching memory</h2>
-          <p>
-            A simple memory matching game. The user clicks two cards (images of memes) to try to match them. If there's a match, the cards disappear from the board. If there's no match, the cards are flipped back to their blank side so the user can try again.
-          </p>
-          <h2>The Deployment Environment</h2>
-          <p>
-            The code will be deployed and hosted in S3.
-          </p>
-          <h2>The Deployment Pipeline</h2>
-          <p>
-            The pipeline is created using AWS Code Pipeline. The pipeline pulls the code from GitHub and deploys it to S3 whenever a change is detected in the code.
-          </p>
-        </div>
-      </div>
+    <div class="col-lg-8 offset-lg-2">
+  <div class="portfolio-description">
+    <h2>Creating Visualizations from a Large Dataset using Amazon S3 and Amazon Quicksight</h2>
+    <p>
+      In this project, you'll learn how to create visualizations from a large dataset using Amazon S3 and Amazon Quicksight. We'll be working with a dataset of 50,000 best-selling products on Amazon.com.
+    </p>
+    <h2>Step 1: Download the Dataset</h2>
+    <ol>
+      <li>Navigate to s3-quicksight to download the "Amazon Bestseller Dataset" CSV file and the "manifest.json" file.</li>
+      <li>Click on "raw" and Control+S to save both files onto your computer.</li>
+    </ol>
+    <h2>Step 2: Store the Dataset in Amazon S3</h2>
+    <ol>
+      <li>Open the Amazon S3 console and click "Create Bucket."</li>
+      <li>Name the bucket (e.g., "aws-project") and keep the settings as default.</li>
+      <li>Upload the CSV file and the "manifest.json" file into the bucket.</li>
+      <li>Replace the URL in the "manifest.json" file with the S3 URL of your dataset.</li>
+    </ol>
+    <h2>Step 3: Connect S3 Bucket with Amazon Quicksight</h2>
+    <ol>
+      <li>Open the AWS management console and navigate to Amazon Quicksight.</li>
+      <li>Sign up for a free trial of the Enterprise edition if you don't have an account.</li>
+      <li>Select Amazon S3 and tick the box for the S3 bucket you created.</li>
+      <li>Enter the link to your "manifest.json" file and connect to Quicksight.</li>
+      <li>Select "interactive sheet" to start creating visualizations.</li>
+    </ol>
+    <h2>Step 4: Create Visualizations</h2>
+    <ol>
+      <li>Drag fields into the graph to create visualizations (e.g., Most popular brands).</li>
+      <li>Sort, filter, and customize the graphs as desired.</li>
+      <li>Experiment with different types of graphs like bar charts, pie charts, line graphs, etc.</li>
+    </ol>
+  </div>
+</div>
+
 
     </div>
 
